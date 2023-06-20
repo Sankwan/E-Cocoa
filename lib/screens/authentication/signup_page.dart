@@ -25,6 +25,13 @@ class _SignupPageState extends State<SignupPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Center(
+                child: CircleAvatar(
+                  radius: 100,
+                  backgroundImage: AssetImage('assets/images/signupimage.jpeg'),
+                ),
+              ),
+              SizedBox(height: 50),
               const Text(
                 "New Here?",
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),

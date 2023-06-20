@@ -70,12 +70,26 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 TextFormField(
                   controller: _usernameController,
                   decoration:const InputDecoration(
-                    labelText: 'Username',
+                    labelText: 'new password',
                     border: OutlineInputBorder(),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your username';
+                      return 'Please enter your password';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height:20),
+                TextFormField(
+                  controller: _usernameController,
+                  decoration:const InputDecoration(
+                    labelText: 'confirm new password',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your new password';
                     }
                     return null;
                   },

@@ -29,7 +29,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 250),
+          const SizedBox(height: 100),
           TextFormField(
             controller: usernameController,
             decoration: InputDecoration(

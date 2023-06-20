@@ -21,12 +21,20 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Center(
+                child: CircleAvatar(
+                  radius: 100,
+                  backgroundImage: AssetImage('assets/images/loginimage.jpeg'),
+                ),
+              ),
+              SizedBox(height: 50),
               const Text(
                 "Welcome Back",
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
               const Text("Enter your credential to login"),
               // Username
+              //class of a form with validation
               CustomFormField(
                 buttonName: 'Login',
               ),
