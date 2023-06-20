@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:logger/logger.dart';
 
 nextNav(BuildContext context, intent) {
   return Navigator.push(
@@ -26,6 +25,14 @@ nextNavRemoveHistory(BuildContext context, intent) {
   );
 }
 
+nextNavReplacement(BuildContext context, intent) {
+  Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => intent,
+      ));
+}
+
 prevNav(BuildContext context) {
   Navigator.pop(context);
 }
@@ -34,5 +41,3 @@ snackBar(BuildContext context, String text) {
   return ScaffoldMessenger.of(context)
       .showSnackBar(SnackBar(content: Text(text)));
 }
-
-// var logger = Logger();

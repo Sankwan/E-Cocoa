@@ -9,24 +9,27 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _formKey = GlobalKey<FormState>();
-  final _usernameEmailController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _phoneNumberController = TextEditingController();
 
   @override
   void dispose() {
-    _usernameEmailController.dispose();
+    _usernameController.dispose();
+    _phoneNumberController.dispose();
     super.dispose();
   }
 
   void _resetPassword() {
     if (_formKey.currentState!.validate()) {
       // Perform the password reset logic here
-      final usernameEmail = _usernameEmailController.text;
+      // final username = _usernameController.text;
+      // final phoneNumber = _phoneNumberController.text;
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: const Text('Confirmation'),
-            content: Text('Password reset email has been sent to $usernameEmail.'),
+            content: Text('Password reset has been sent to your number.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -46,45 +49,62 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Forgot Password'),
+        elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Forgot Password',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Enter your username or email',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 20),
-              TextFormField(
-                controller: _usernameEmailController,
-                decoration:const InputDecoration(
-                  labelText: 'Username or Email',
-                  border: OutlineInputBorder(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [    
+                const SizedBox(height: 100,),         
+                const Text(
+                  'Enter your credentials to request\na new password ',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
                 ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your username or email';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _resetPassword,
-                child: const Text('Reset Password'),
-              ),
-            ],
+                const SizedBox(height: 50),
+                TextFormField(
+                  controller: _usernameController,
+                  decoration:const InputDecoration(
+                    labelText: 'Username',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your username';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height:20),
+                TextFormField(
+                  keyboardType: TextInputType.phone,
+                  controller: _phoneNumberController,
+                  decoration:const InputDecoration(
+                    labelText: 'phone number',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your number';
+                    }
+                    return null;
+                  },
+                ),
+                // const SizedBox(height: 100),
+                Padding(
+                  padding: const EdgeInsets.only(left: 40, right: 40, top: 40,  ),
+                  child: ElevatedButton(
+                    onPressed: _resetPassword,
+                    child: const Text('Reset Password'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
